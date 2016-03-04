@@ -32,7 +32,7 @@ class Game
   end
 
   def score(word)
-    if in_dictionary?(word)
+    if in_dictionary?(word) && in_rack?(word)
       letters = word.upcase.split('')
       score = 0
       letters.each do |letter|
@@ -48,6 +48,11 @@ class Game
 
   def in_dictionary?(word)
     true if File.read('words.txt').include?(word.downcase)
+  end
+
+  def in_rack?(word)
+    letters = word.upcase.split('')
+    true if (letters - rack.tiles).empty?
   end
 
 end

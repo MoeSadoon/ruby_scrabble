@@ -33,14 +33,21 @@ end
 
 describe "game" do
   context 'scoring the game' do
+    let(:game) { Game.new }
+
     it 'should be able to provide a score for a given word' do
-      game = Game.new
+      game.rack.tiles.concat(['A', 'G', 'O', 'D']) #this is a fake rack for testing
       expect(game.score('dog')).to eq 5
     end
 
     it 'should only score a word found in English dictionary' do
-      game = Game.new
-      expect(game.score('xyxas')).to eq "You can't do that!"
+      game.rack.tiles.concat(['Z', 'Y' ,'X', 'A', 'S']) #this is a fake rack for testing
+      expect(game.score('zyxas')).to eq "You can't do that!"
+    end
+
+    it 'should only allow word from tiles in rack' do
+      game.rack.tiles.concat(['A', 'B' ,'C', 'D']) #this is a fake rack for testing
+      expect(game.score('Hand')).to eq "You can't do that!"
     end
   end
 end
