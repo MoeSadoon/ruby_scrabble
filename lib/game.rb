@@ -31,4 +31,13 @@ class Game
     @rack.tiles.concat(@tiles.sample(7))
   end
 
+  def score(word)
+    letters = word.upcase.split('')
+    score = 0
+    letters.each do |letter|
+      score+=@rules[letter]
+    end
+    return score
+  end
+
 end
