@@ -1,5 +1,5 @@
 class Game
-  attr_reader :rules
+  attr_reader :rules, :tiles
 
   def initialize
     @rules = {
@@ -11,6 +11,20 @@ class Game
       'U' => 1, 'V' => 4, 'W' => 4, 'X' => 8,
       'Y' => 4, 'Z' => 10, 'BLANK' => 0
     }
+
+    @tiles = []
+    @rules.each do |key, value|
+      12.times { @tiles << key } if key == 'E'
+      9.times { @tiles << key } if ['A', 'I'].include?(key)
+      8.times { @tiles << key } if key == 'O'
+      6.times { @tiles << key } if ['N', 'R', 'T'].include?(key)
+      4.times { @tiles << key } if ['L', 'S', 'U', 'D'].include?(key)
+      3.times { @tiles << key } if key == 'G'
+      2.times { @tiles << key } if ['B', 'C', 'M', 'P', 'F', 'H', 'V', 'W', 'Y', 'BLANK'].include?(key)
+      1.times { @tiles << key } if ['K', 'J', 'X', 'Q', 'Z'].include?(key)
+    end
+
+
   end
 
 end
