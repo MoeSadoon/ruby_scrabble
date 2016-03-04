@@ -37,5 +37,10 @@ describe "game" do
       game = Game.new
       expect(game.score('dog')).to eq 5
     end
+
+    it 'should only score a word found in English dictionary' do
+      game = Game.new
+      expect(game.score('xyxas')).to eq "You can't do that!"
+    end
   end
 end

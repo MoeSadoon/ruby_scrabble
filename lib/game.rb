@@ -32,12 +32,22 @@ class Game
   end
 
   def score(word)
-    letters = word.upcase.split('')
-    score = 0
-    letters.each do |letter|
-      score+=@rules[letter]
+    if in_dictionary?(word)
+      letters = word.upcase.split('')
+      score = 0
+      letters.each do |letter|
+        score+=@rules[letter]
+      end
+      return score
+    else
+      "You can't do that!"
     end
-    return score
+  end
+
+  private
+
+  def in_dictionary?(word)
+    true if File.read('words.txt').include?(word.downcase)
   end
 
 end
