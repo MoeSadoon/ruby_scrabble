@@ -1,5 +1,5 @@
 class Game
-  attr_reader :rules, :tiles
+  attr_reader :rules, :tiles, :rack
 
   def initialize
     @rules = {
@@ -24,7 +24,11 @@ class Game
       1.times { @tiles << key } if ['K', 'J', 'X', 'Q', 'Z'].include?(key)
     end
 
+    @rack = Rack.new
+  end
 
+  def assign_tiles
+    @rack.tiles.concat(@tiles.sample(7))
   end
 
 end

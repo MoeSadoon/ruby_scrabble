@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe "tile" do
+  let(:game) { Game.new }
 
   it "is expected to have a value based on its letter" do
     game = Game.new
@@ -23,5 +24,13 @@ describe "tile" do
     game = Game.new
     expect(game.tiles.length).to eq 100
   end
+end
 
+describe "rack" do
+
+  it "is expected to have 7 random tiles" do
+    game = Game.new
+    game.assign_tiles
+    expect(game.rack.tiles.length).to eq 7
+  end
 end
